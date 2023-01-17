@@ -1,0 +1,75 @@
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+    color: aliceblue;
+    padding: 15px;
+}
+
+.wrapper {
+    height: 100vh;
+}
+
+.title {
+    margin-bottom: 20px;
+}
+
+.game {
+    width: 786px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width:20%;
+    height: 150px;
+    background-color: gray;
+    cursor: pointer;
+    color: gray;
+    font-size: 40px;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.open {
+    background-color: aquamarine;
+}
+
+.found {
+    background-color: orange;
+    color: black;
+    transform: scale(0.9);
+}
+
+.restart-btn {
+    margin: 20px auto;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.win {
+    background-color: green;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.timer {
+    font-size: 20px;
+}
