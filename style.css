@@ -1,0 +1,109 @@
+.input-filter {
+  margin-bottom: 10px;
+}
+
+.row {
+  justify-content: space-around;
+}
+
+li {
+    list-style-type: none;
+}
+
+.filter {
+  width: 40%;
+  margin-right: 20px;
+}
+
+.add__item {
+    margin-bottom: 10px;
+}
+
+.filter__form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.add-student {
+  width: 55%;
+}
+
+.add__list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+
+.newStudentForm {
+    margin-bottom: 10px;
+}
+
+.filter__btn {
+    color: rgb(114, 114, 114);
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 7px;
+    margin-bottom: 20px;
+    display: none;
+}
+
+
+
+.filter__btn:hover {
+  color: black;
+  background-color: white;
+    box-shadow: 0px 5px 10px rgb(133, 133, 133);
+    transition: box-shadow ease 0.1s, color ease 0.2s;
+}
+
+.add__btn {
+    margin-bottom: 30px;
+}
+
+
+.validated {
+  background-color: rgb(187, 255, 232);
+}
+
+.add__btn:hover {
+    color: black;
+    background-color: white;
+    box-shadow: 0px 5px 10px rgb(133, 133, 133);
+    transition: box-shadow ease 0.1s, color ease 0.2s;
+}
+
+.add__btn--wrapper {
+    color: red;
+    font-size: 20px;
+}
+
+.table__item {
+    cursor: pointer;
+}
+
+th {
+    border: 1px solid gray;
+    padding: 5px;
+}
+
+.control-wrapper {
+  width: 100%;
+}
+
+.change__btn {
+  display: none;
+  margin-bottom: 30px;
+
+}
+
+
+.disabled {
+  display: none;
+}
+
+.active {
+  display: flex;
+}
+

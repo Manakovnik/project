@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+      <div class="row">
+        <div class="filter">
+            <h2 class="filter-header">Показать студентов</h2>
+            <form class="filter__form" id="filter__form" >
+                <label for="FIO">по ФИО</label>
+                <input type="text" class="input-filter form-control" id="inputFIO">
+
+                <label for="faculty">по факультету</label>
+                <input type="text" class="input-filter form-control" id="inputFaculty">
+
+                <label for="date-start">по дате начала обучения</label>
+                <input type="text" class="input-filter form-control" id="inputDateStart">
+
+                <label for="date-end">по дате окончания обучения</label>
+                <input type="text" class="input-filter form-control" id="inputDateEnd">
+
+                <button class="filter__btn btn btn-outline-dark" id="filter-btn" type="button">Удалить студента</button>
+                <button class="filter__btn btn btn-outline-dark" id="change-student" type="button">Изменить данные студента</button>
+                <div class="deleteError" id="deleteError" style="color:red; padding-top: 40px;"></div>
+            </form>
+        </div>
+        <div class="add-student">
+            <h2 class="add-student--title">Добавить студента</h2>
+                <form class="add__list" id="add__form">
+                  <div class="control-wrapper">
+                    <label for="student__surname">Фамилия</label>
+                    <input type="text" class="newStudentForm form-control" id="student__surname">
+                  </div>
+                  <div class="control-wrapper">
+                  <label for="student__name">Имя</label>
+                    <input type="text" class="newStudentForm form-control" id="student__name">
+                  </div>
+                  <div class="control-wrapper">
+                    <label for="student__lastname">Отчество</label>
+                    <input type="text" class="newStudentForm form-control" id="student__lastname">
+                  </div>
+                  <div class="control-wrapper">
+                    <label for="student__birthdate">Дата рождения</label>
+                    <input type="date" class="newStudentForm form-control" id="student__birthdate">
+                  </div>
+                  <div class="control-wrapper">
+                    <label for="student__startEducation">Год начала обучения</label>
+                    <input type="number" class="newStudentForm form-control" id="student__startEducation">
+                  </div>
+                  <div class="control-wrapper">
+                    <label for="student__faculty">Факультет</label>
+                    <input type="text" class="newStudentForm form-control" id="student__faculty">
+                  </div>
+                    <div class="add__btn--wrapper" id="add__btn--wrapper"></div>
+                <button class="add__btn btn btn-outline-dark" id="add-btn" type="submit">Добавить студента</button>
+                <button class="change__btn btn btn-outline-dark" id="change-btn" type="submit">Сохранить изменения</button>
+              </form>
+        </div>
+      </div>
+
+       <table class="table table-hover">
+            <thead class="table__head thead-dark">
+                <tr class="table__row">
+                    <th class="table__item" id="table-fio">ФИО</th>
+                    <th class="table__item" id="table-faculty">Факультет</th>
+                    <th class="table__item" id="table-birthDate">Дата рождения и возраст</th>
+                    <th class="table__item" id="table-startDate">Годы обучения и курс</th>
+                </tr>
+            </thead>
+            <tbody class="table__body table-striped" id="table__body"></tbody>
+        </table>
+
+</div>
+<script src="/index.js"></script>
+<script>
+  const validate = new window.JustValidate('#add__form');
+</script>
+</body>
+</html>
