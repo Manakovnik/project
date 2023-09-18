@@ -1,4 +1,3 @@
-
 // поля ввода методов фильтрации
 const filterFio = document.getElementById("inputFIO");
 const filterFaculty = document.getElementById("inputFaculty");
@@ -36,7 +35,7 @@ const deleteError = document.getElementById("deleteError");
 // валидация формы добавления нового студента
 let isValid = false;
 
-const minBirthDate = new Date(1990, 0, 1);
+const minBirthDate = new Date(1980, 0, 1);
 const minStartDate = 2000;
 
 let allStudents = [];
@@ -53,10 +52,9 @@ async function loadStudents() {
     createTable(allStudents);
     console.log(allStudents);
   } else {
-
     // если сервер пуст - проверяем local storage
     checkLocalStorage();
-    console.log('students loaded from local storage')
+    console.log("students loaded from local storage");
   }
 }
 loadStudents(allStudents);
@@ -64,7 +62,7 @@ loadStudents(allStudents);
 function isFormValid() {
   if (Date.parse(inputBirthDate.value) < Date.parse(minBirthDate)) {
     validationError.textContent =
-      "Дата рождения должна быть после 1 января 1990г.";
+      "Дата рождения должна быть после 1 января 1980г.";
     return false;
   }
 
@@ -137,8 +135,7 @@ validator
     if (!isFormValid()) return;
     if (!addBtnIsActive) return;
     await createStudent();
-    loadStudents()
-
+    loadStudents();
 
     validationError.textContent = "";
     deleteError.textContent = "";
@@ -177,9 +174,6 @@ function checkLocalStorage() {
   }
 }
 
-
-
-
 //отрисовка таблицы
 function createTable(arr) {
   table.innerHTML = "";
@@ -198,7 +192,7 @@ function createTable(arr) {
       changeStudent.classList.toggle("active");
       changeStudent.setAttribute("data-rowId", arr[i].id);
 
-      studentId = arr[i].id
+      studentId = arr[i].id;
     });
     row.innerHTML = `
           <td>${fio}</td>
@@ -214,7 +208,7 @@ function createTable(arr) {
 function education(str) {
   let endYear = +str + 4;
   let now = new Date();
-  let grade = now.getFullYear() - str;
+  let grade = now.getFullYear() - str + 1;
   let output;
   if (grade > 4) {
     output = `${str} - ${endYear} (закончил)`;
@@ -246,59 +240,54 @@ deleteBtn.addEventListener("click", async function () {
     loadStudents();
   }
   deleteBtn.classList.remove("active");
-  console.log(allStudents)
+  console.log(allStudents);
 });
 
 //добавление данных выбранного студента в поля ввода
-changeStudent.addEventListener('click', () => {
-  studentSelected(allStudents)
+changeStudent.addEventListener("click", () => {
+  studentSelected(allStudents);
   addBtnIsActive = false;
 });
 
 function studentSelected(arr) {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i].id == studentId) {
-      inputName.value = arr[i].name,
-      inputSurname.value = arr[i].surname,
-      inputLastname.value = arr[i].lastname,
-      inputBirthDate.value = arr[i].birthday,
-      inputStartDate.value = arr[i].studyStart,
-      inputFaculty.value = arr[i].faculty
-      addStudentBtn.classList.add('disabled');
-      changeBtn.classList.add('active');
+      (inputName.value = arr[i].name),
+        (inputSurname.value = arr[i].surname),
+        (inputLastname.value = arr[i].lastname),
+        (inputBirthDate.value = arr[i].birthday),
+        (inputStartDate.value = arr[i].studyStart),
+        (inputFaculty.value = arr[i].faculty);
+      addStudentBtn.classList.add("disabled");
+      changeBtn.classList.add("active");
     }
   }
-};
-
-  //отправка изменений на сервер
-    changeBtn.addEventListener('click', async () => {
-      await changeStudentData(studentId)
-      addStudentBtn.classList.remove('disabled');
-      changeBtn.classList.remove('active');
-      window.location.reload();
-    });
-
-async function changeStudentData(id) {
-    const response = await fetch(`http://localhost:3000/api/students/${id}`, {
-      method: "PATCH",
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name: inputName.value.trim(),
-        surname: inputSurname.value.trim(),
-        lastname: inputLastname.value.trim(),
-        birthday: inputBirthDate.value.trim(),
-        studyStart: inputStartDate.value.trim(),
-        faculty: inputFaculty.value.trim(),
-    })
-  })
-  data = await response.json();
-  console.log(data)
-
 }
 
+//отправка изменений на сервер
+changeBtn.addEventListener("click", async () => {
+  await changeStudentData(studentId);
+  addStudentBtn.classList.remove("disabled");
+  changeBtn.classList.remove("active");
+  window.location.reload();
+});
 
-
-
+async function changeStudentData(id) {
+  const response = await fetch(`http://localhost:3000/api/students/${id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      name: inputName.value.trim(),
+      surname: inputSurname.value.trim(),
+      lastname: inputLastname.value.trim(),
+      birthday: inputBirthDate.value.trim(),
+      studyStart: inputStartDate.value.trim(),
+      faculty: inputFaculty.value.trim(),
+    }),
+  });
+  data = await response.json();
+  console.log(data);
+}
 
 // фильтрация списка студентов
 let timer;
@@ -313,7 +302,11 @@ function filteredRows() {
       const studentLastName = student.lastname.toLowerCase();
       const filterValue = filterFio.value.toLowerCase();
 
-      return (studentSurName.includes(filterValue) || studentName.includes(filterValue) || studentLastName.includes(filterValue))
+      return (
+        studentSurName.includes(filterValue) ||
+        studentName.includes(filterValue) ||
+        studentLastName.includes(filterValue)
+      );
     }
 
     if (filterFaculty.value) {
@@ -329,7 +322,7 @@ function filteredRows() {
       const studentDateStart = student.studyStart.toString();
       const filterValue = filterDateStart.value.toString();
 
-       if (!studentDateStart.includes(filterValue)) {
+      if (!studentDateStart.includes(filterValue)) {
         return false;
       }
     }
@@ -343,8 +336,7 @@ function filteredRows() {
       }
     }
     return true;
-
-  })
+  });
   createTable(filteredArrey);
 }
 
@@ -352,17 +344,15 @@ const nameFiltration = filterFio.addEventListener("keyup", function () {
   clearTimeout(timer);
   timer = setTimeout(nameFiltration, 300);
 
-  filteredRows()
-  }
-);
+  filteredRows();
+});
 
 const facultyFiltration = filterFaculty.addEventListener("keyup", function () {
   clearTimeout(timer);
   timer = setTimeout(facultyFiltration, 300);
 
-  filteredRows()
-  }
-);
+  filteredRows();
+});
 
 const dateStartFiltration = filterDateStart.addEventListener(
   "keyup",
@@ -370,7 +360,7 @@ const dateStartFiltration = filterDateStart.addEventListener(
     clearTimeout(timer);
     timer = setTimeout(dateStartFiltration, 300);
 
-    filteredRows()
+    filteredRows();
   }
 );
 
@@ -378,10 +368,8 @@ const dateEndFiltration = filterDateEnd.addEventListener("keyup", function () {
   clearTimeout(timer);
   timer = setTimeout(dateEndFiltration, 300);
 
-  filteredRows()
-}
-);
-
+  filteredRows();
+});
 
 // сортировка при нажатии на ячейку таблицы
 function sortedRows(method) {
@@ -421,4 +409,3 @@ tableStartDate.addEventListener("click", function () {
   const rows = sortedRows("studyStart");
   createTable(rows);
 });
-
