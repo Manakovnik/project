@@ -5,11 +5,11 @@ const filterDateStart = document.getElementById("inputDateStart");
 const filterDateEnd = document.getElementById("inputDateEnd");
 
 // кнопки
-const deleteBtn = document.getElementById("filter-btn");
-const addStudentBtn = document.getElementById("add-btn");
+const deleteBtn = document.querySelector("#filter-btn");
+const addStudentBtn = document.querySelector("#add-btn");
 let addBtnIsActive = true;
 
-const changeBtn = document.getElementById("change-btn");
+const changeBtn = document.querySelector("#change-btn");
 const changeStudent = document.getElementById("change-student");
 let studentId;
 // Таблица
@@ -44,7 +44,7 @@ let allStudents = [];
 async function loadStudents() {
   const response = await fetch("http://localhost:3000/api/students");
   const data = await response.json();
-
+  console.log(data);
   if (data && data.length > 0) {
     console.log("server checked");
     //если сервер дал ответ и массив не пустой - обьединяем массивы
@@ -54,6 +54,7 @@ async function loadStudents() {
   } else {
     // если сервер пуст - проверяем local storage
     checkLocalStorage();
+    console.log(allStudents);
     console.log("students loaded from local storage");
   }
 }
@@ -259,8 +260,8 @@ function studentSelected(arr) {
         (inputStartDate.value = arr[i].studyStart),
         (inputFaculty.value = arr[i].faculty);
       addStudentBtn.classList.add("disabled");
-      changeBtn.classList.add("active");
     }
+    changeBtn.classList.add("active");
   }
 }
 

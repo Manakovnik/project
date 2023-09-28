@@ -90,6 +90,10 @@ li {
   font-size: 20px;
 }
 
+.just-validate-error-label {
+  color: red !important;
+}
+
 .table__item {
   cursor: pointer;
 }
@@ -110,10 +114,6 @@ th {
 
 .disabled {
   display: none;
-}
-
-.active {
-  display: flex;
 }
 
 .add__btn {
@@ -178,4 +178,8 @@ th {
     transform: scaleX(0);
     transform-origin: right;
   }
+}
+
+.active {
+  display: flex;
 }
